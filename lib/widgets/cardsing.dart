@@ -5,7 +5,12 @@ Widget cards(BuildContext context){
     width: 150,
     height: 300,
     child: Card(
-      child: Image.asset('assets/image_templets_books.jpg', fit: BoxFit.fill,),
+      child: IconButton(
+        onPressed: (){
+          debugPrint("press f");
+        },
+        icon: Image.asset('assets/image_templets_books.jpg', fit: BoxFit.fill,),
+      ), 
     ),
   );
 }

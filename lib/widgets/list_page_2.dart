@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:io' show Platform;
-import 'cardsing.dart';
 
 int colimns = 2;
 
@@ -10,15 +9,19 @@ void rows_colst(){
   }
   else if(Platform.isLinux) {
     colimns = 4;
+   
   }
   else if(Platform.isWindows) {
     colimns = 4;
+    
   }
   else if(Platform.isIOS) {
     colimns = 2;
+   
   }
   else if(Platform.isMacOS) {
     colimns = 4;
+    
   }
 
 }
