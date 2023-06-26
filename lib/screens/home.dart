@@ -36,17 +36,17 @@ class _HomeState extends State<Home> {
         paddingBackgroundColor:  Colors.white.withOpacity(0),
         items: [
           SweetNavBarItem(
-              sweetActive: const Icon(Icons.home),
+              sweetActive: const Icon(Icons.book_sharp),
               sweetIcon: const Icon(
-                Icons.home_outlined,
+                Icons.book_sharp,
               ),
               sweetLabel: 'Home',
 
               sweetBackground: Colors.red),
           SweetNavBarItem(
-              sweetIcon: const Icon(Icons.business), sweetLabel: 'Business'),
+              sweetIcon: const Icon(Icons.chrome_reader_mode), sweetLabel: 'Business'),
           SweetNavBarItem(
-              sweetIcon: const Icon(Icons.school), sweetLabel: 'School'),
+              sweetIcon: const Icon(Icons.search), sweetLabel: 'School'),
         ],
         onTap: (index) {
           setState(() {
@@ -55,60 +55,7 @@ class _HomeState extends State<Home> {
         },
       ),
 
-      // bottomNavigationBar: SweetNavBar(
-
-      //   currentIndex: cIndex,
-      //   paddingBackgroundColor: Colors.red,
-      //   items: [
-      //     SweetNavBarItem(
-      //         sweetActive: const Icon(Icons.home),
-      //         sweetIcon: const Icon(
-      //           Icons.home_outlined,
-      //         ),
-      //         sweetLabel: 'Home',
-             
-      //         sweetBackground: Colors.red),
-      //     SweetNavBarItem(
-      //         sweetIcon: const Icon(Icons.business), sweetLabel: 'Business'),
-      //     SweetNavBarItem(
-      //         sweetIcon: const Icon(Icons.school), sweetLabel: 'School'),
-      //   ],
-      //   onTap: (index) {
-      //     setState(() {
-      //       cIndex = index;
-      //     });
-      //   },
-      // ),
-        // body:  [
-        //   List_views(context),
-        //   List_views_2(context),
-        //   search_page(context),
-        // ][selectedPageIndex],
-        // bottomNavigationBar: NavigationBar(
-        // selectedIndex: selectedPageIndex,
-        //   onDestinationSelected: (int index) {
-        //     setState(() {
-        //       selectedPageIndex = index;
-        //     });
-        //   },
-        //   destinations: const <NavigationDestination>[
-        //     NavigationDestination(
-        //       selectedIcon: Icon(Icons.person),
-        //       icon: Icon(Icons.book),
-        //       label: 'Learn',
-        //     ),
-        //     NavigationDestination(
-        //       selectedIcon: Icon(Icons.engineering),
-        //       icon: Icon(Icons.read_more),
-        //       label: 'Relearn',
-        //     ),
-        //     NavigationDestination(
-        //       selectedIcon: Icon(Icons.bookmark),
-        //       icon: Icon(Icons.bookmark_border),
-        //       label: 'Unlearn',
-        //     ),
-        //   ],
-        // ),
+      
       );
   }
 }
