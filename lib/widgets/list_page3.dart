@@ -9,23 +9,23 @@ Widget search_page(BuildContext context){
   final suggestions =
         List.generate(suggestionsCount, (index) => 'suggestion $index');
   late ScrollController _scrollController;
-  // late Alignment _aligments;
-  // _aligments =  Alignment.centerLeft;
-  // void sc(){
-  //   _scrollController = ScrollController()
-  //   ..addListener(() {
-  //       _aligments =  Alignment.topCenter;
-  //        if (_scrollController.position.pixels == 30.0){
-  //           _aligments =  Alignment.centerLeft;
-  //        }
-  //   });
-  // }
+  late Alignment _aligments;
+  double size_h = MediaQuery.of(context).size.width;
+  int elements_list = 10;
+  _aligments =  Alignment.topCenter;
+   final _controller = TextEditingController();
+  String text_hint = 'Книги';
+
+  void text_edits(){
+    debugPrint("${_controller.text}");
+
+  }
+  
 
 
-  // sc();
+
   return NestedScrollView(
         floatHeaderSlivers: true,
-        // controller: _scrollController,
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
         SliverAppBar(
           // title: const Text('Поиск', style: TextStyle(color: Colors.black),),
@@ -33,44 +33,48 @@ Widget search_page(BuildContext context){
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
-                  child: Align(alignment: Alignment.centerLeft,child: const Text('Читаю сейчас', style: TextStyle(color: Colors.black),)),
+                  child: Align(alignment: _aligments,child: const Text('Поиск', style: TextStyle(color: Colors.black),)),
                 ),
                 Center(
-                child: SearchField(
-                  onSearchTextChanged: (query) {
-                    final filter = suggestions
-                        .where((element) =>
-                            element.toLowerCase().contains(query.toLowerCase()))
-                        .toList();
-                    return filter
-                        .map((e) => SearchFieldListItem<String>(e,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 4.0),
-                              child: Text(e,
-                                  style: TextStyle(fontSize: 24, color: Colors.black)),
-                            )))
-                        .toList();
-                  },
-                  key: const Key('searchfield'),
-                  hint: 'Книги',
-                  itemHeight: 50,
-                  suggestionsDecoration: SuggestionDecoration(
-                      padding: const EdgeInsets.all(4),
-                      border: Border.all(color: Colors.black),
-                      borderRadius: BorderRadius.all(Radius.circular(30))),
-                  suggestions: suggestions
-                      .map((e) => SearchFieldListItem<String>(e,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 4.0),
-                            child: Text(e,
-                                style: TextStyle(fontSize: 24, color: Colors.black)),
-                          )))
-                      .toList(),
-                  focusNode: focus,
-                  suggestionState: Suggestion.expand,
-                  onSuggestionTap: (SearchFieldListItem<String> x) {
-                    focus.unfocus();
-                  },
+                child: Container(
+                  width: size_h,
+                  child: SearchField(
+                    controller: _controller,
+                    onSearchTextChanged: (query) {
+                      final filter = suggestions
+                          .where((element) =>
+                              element.toLowerCase().contains(query.toLowerCase()))
+                          .toList();
+                      return filter
+                          .map((e) => SearchFieldListItem<String>(e,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 4.0),
+                                child: Text(e,
+                                    style: TextStyle(fontSize: 24, color: Colors.black)),
+                              )))
+                          .toList();
+                    },
+                    key: const Key('searchfield'),
+                    hint: text_hint,
+                    itemHeight: 50,
+                    // suggestionsDecoration: SuggestionDecoration(
+                    //     padding: const EdgeInsets.all(4),
+                    //     border: Border.all(color: Colors.black),
+                    //     borderRadius: BorderRadius.all(Radius.circular(30))),
+                    // suggestions: suggestions
+                    //     .map((e) => SearchFieldListItem<String>(e,
+                    //         child: Padding(
+                    //           padding: const EdgeInsets.symmetric(vertical: 4.0),
+                    //           child: Text(e,
+                    //               style: TextStyle(fontSize: 24, color: Colors.black)),
+                    //         )))
+                    //     .toList(),
+                    // focusNode: focus,
+                    // suggestionState: Suggestion.expand,
+                    // onSuggestionTap: (SearchFieldListItem<String> x) {
+                    //   focus.unfocus();
+                    // },
+                  ),
                 ),
                 ),
               ],
@@ -83,19 +87,37 @@ Widget search_page(BuildContext context){
           floating: true,
           backgroundColor: Colors.white,
           forceElevated: innerBoxIsScrolled,
-          actions: [
-            
-          ],
-          
         ),
       ],
       // The content of the scroll view
       body: ListView.builder(
+        itemCount:elements_list,
         itemBuilder: (context, index) => ListTile(
-          title: Text(
-            'Text $index',
+          title: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child:ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.white,elevation: 1),
+                onPressed: () {
+                  _controller.text = 'Text ${index}';
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Text ${index}', style: TextStyle(color: Colors.black),), // <-- Text
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    const Icon( // <-- Icon
+                      Icons.search,
+                      size: 24.0,
+                      color: Colors.black,
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
         ),
-      ),
+      
     );
 }
