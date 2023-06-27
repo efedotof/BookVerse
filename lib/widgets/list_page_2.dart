@@ -29,35 +29,47 @@ void rows_colst(){
 Widget List_views_2(BuildContext context){
   rows_colst();
   return 
-      Center(
-        child: GridView.count(
-          shrinkWrap: true,
-          crossAxisCount: colimns,
-          padding: EdgeInsets.all(13),
-          children: List.generate(20, (index){
-            return Card(
-                    child: Container(
-                      height: 290,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20)),
-                  
-                      child: Stack(
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Expanded(
-                                child: Image.asset('assets/image_templets_books.jpg', fit: BoxFit.fill,)
-                              ),
-                              
-                            ],
-                          ),
-                        ],
+      NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) => [
+        SliverAppBar(
+          title: const Text('Читаю сейчас', style: TextStyle(color: Colors.black),),
+          expandedHeight: 80,
+          pinned: true,
+          backgroundColor: Colors.white,
+          forceElevated: innerBoxIsScrolled,
+        ),
+      ],
+      // The content of the scroll view
+      body: Center(
+          child: GridView.count(
+            shrinkWrap: true,
+            crossAxisCount: colimns,
+            padding: EdgeInsets.all(13),
+            children: List.generate(20, (index){
+              return Card(
+                      child: Container(
+                        height: 290,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20)),
+                    
+                        child: Stack(
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Expanded(
+                                  child: Image.asset('assets/image_templets_books.jpg', fit: BoxFit.fill,)
+                                ),
+                                
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  );
-          }),
-          
+                    );
+            }),
+            
+          ),
         ),
       );
 }

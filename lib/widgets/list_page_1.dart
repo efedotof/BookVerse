@@ -41,7 +41,8 @@ Widget List_views(BuildContext context){
           
         ),
         content: Container(
-        height: 300,
+        height: 270,
+        
         child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
