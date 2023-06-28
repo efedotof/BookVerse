@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'dart:io' show Platform;
 
+import 'package:magazine/widgets/cardsing.dart';
+
+import 'cards_past.dart';
+import 'cards_reade_todo.dart';
+import 'cards_recent.dart';
+
 int colimns = 2;
 
 void rows_colst(){
@@ -40,36 +46,29 @@ Widget List_views_2(BuildContext context){
         ),
       ],
       // The content of the scroll view
-      body: Center(
-          child: GridView.count(
-            shrinkWrap: true,
-            crossAxisCount: colimns,
-            padding: EdgeInsets.all(13),
-            children: List.generate(20, (index){
-              return Card(
-                      child: Container(
-                        height: 290,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20)),
-                    
-                        child: Stack(
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                Expanded(
-                                  child: Image.asset('assets/image_templets_books.jpg', fit: BoxFit.fill,)
-                                ),
-                                
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-            }),
-            
+      body:ListView(
+        children: [
+          Container(
+            height: 1,
+            color: Colors.black,
           ),
-        ),
+          Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: Container(
+              height: 300,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  cards_todo(context),
+                  cards_recent(context),
+          
+                  for(int i =0; i < 20;i++) cards_past(context),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+      
       );
 }
