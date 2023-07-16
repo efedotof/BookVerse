@@ -1,30 +1,34 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:sticky_headers/sticky_headers.dart';
 import 'package:searchfield/searchfield.dart';
 
-Widget search_page(BuildContext context){
-  int suggestionsCount = 12;
+
+
+
+class search_page extends StatefulWidget {
+  const search_page({super.key,
+  
+  });
+
+  @override
+  State<search_page> createState() => _search_pageState();
+}
+
+class _search_pageState extends State<search_page> {
   final focus = FocusNode();
-  final suggestions =
-        List.generate(suggestionsCount, (index) => 'suggestion $index');
-  late ScrollController _scrollController;
-  late Alignment _aligments;
-  double size_h = MediaQuery.of(context).size.width;
+  final suggestions =List.generate(12, (index) => 'suggestion $index');
+  late Alignment _aligments = Alignment.topCenter;
   int elements_list = 10;
-  _aligments =  Alignment.topCenter;
-   final _controller = TextEditingController();
+  final _controller = TextEditingController();
   String text_hint = 'Книги';
 
   void text_edits(){
     debugPrint("${_controller.text}");
 
   }
-  
-
-
-
-  return NestedScrollView(
+  @override
+  Widget build(BuildContext context) {
+    return NestedScrollView(
         floatHeaderSlivers: true,
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
         SliverAppBar(
@@ -37,7 +41,7 @@ Widget search_page(BuildContext context){
                 ),
                 Center(
                 child: Container(
-                  width: size_h,
+                  width: MediaQuery.of(context).size.width,
                   child: SearchField(
                     controller: _controller,
                     onSearchTextChanged: (query) {
@@ -61,19 +65,18 @@ Widget search_page(BuildContext context){
                     //     padding: const EdgeInsets.all(4),
                     //     border: Border.all(color: Colors.black),
                     //     borderRadius: BorderRadius.all(Radius.circular(30))),
-                    // suggestions: suggestions
-                    //     .map((e) => SearchFieldListItem<String>(e,
-                    //         child: Padding(
-                    //           padding: const EdgeInsets.symmetric(vertical: 4.0),
-                    //           child: Text(e,
-                    //               style: TextStyle(fontSize: 24, color: Colors.black)),
-                    //         )))
-                    //     .toList(),
-                    // focusNode: focus,
-                    // suggestionState: Suggestion.expand,
-                    // onSuggestionTap: (SearchFieldListItem<String> x) {
-                    //   focus.unfocus();
-                    // },
+                    suggestions: suggestions
+                        .map((e) => SearchFieldListItem<String>(e,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 4.0),
+                              child: Text(e,
+                                  style: TextStyle(fontSize: 24, color: Colors.black)),
+                            ))).toList(),
+                    focusNode: focus,
+                    suggestionState: Suggestion.expand,
+                    onSuggestionTap: (SearchFieldListItem<String> x) {
+                      focus.unfocus();
+                    },
                   ),
                 ),
                 ),
@@ -120,4 +123,5 @@ Widget search_page(BuildContext context){
         ),
       
     );
+  }
 }
