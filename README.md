@@ -31,7 +31,7 @@
 С наилучшими пожеланиями,
 efedotov, разработчик **BookVerse**
 ## En
-## Description
+# Description
 🌟 Hello, future BookVerse users! 📚
 
 I am excited to introduce our intuitive mobile application for reading and publishing books - BookVerse! With BookVerse, you can immerse yourself in the wonderful world of literature right from your device, no matter where you are. 🌍
