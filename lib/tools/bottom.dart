@@ -1,6 +1,17 @@
-
+/********************************************/
+/*                                          */
+/*        📱 Название приложения: BookVerse      */
+/*        📚 Описание: Это интуитивное мобильное приложение для чтения и публикации книг. Откройте мир литературы прямо с вашего устройства, где бы вы ни находились. С легкостью загружайте и читайте свои любимые книги из памяти устройства в различных форматах.    */
+/*        👤 Автор: efedotov                       */
+/*        📅 Дата: 2023-07-29                 */
+/*        🚀 Версия: 0.0                         */
+/*                                          */
+/*        © Все права защищены.                */
+/*                                          */
+/// *****************************************
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+// ignore: camel_case_types
 class bottom extends StatefulWidget {
   const bottom({super.key,
     required this.start,
@@ -16,6 +27,7 @@ class bottom extends StatefulWidget {
   State<bottom> createState() => _bottomState();
 }
 
+// ignore: camel_case_types
 class _bottomState extends State<bottom> {
   String currentTime = '';
   NumberFormat numberFormat = NumberFormat("#,##0.00", "en_US");
@@ -31,7 +43,7 @@ class _bottomState extends State<bottom> {
       setState(() {
         currentTime = formattedTime;
       });
-      Future.delayed(Duration(seconds: 1), _getCurrentTime);
+      Future.delayed(const Duration(seconds: 1), _getCurrentTime);
   }
   @override
   Widget build(BuildContext context) {
@@ -45,7 +57,7 @@ class _bottomState extends State<bottom> {
           children: [
             
             Text("${widget.start} / ${widget.end}     ${numberFormat.format((widget.start / widget.end) * 100)} %",style: TextStyle(color:widget.mode?Colors.white:Colors.black),),
-            Text("${currentTime}",style: TextStyle(color:widget.mode?Colors.white:Colors.black),),
+            Text(currentTime,style: TextStyle(color:widget.mode?Colors.white:Colors.black),),
           ],
         ),
      

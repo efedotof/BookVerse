@@ -24,20 +24,22 @@ class ErrorConnection extends StatefulWidget {
 class _ErrorConnectionState extends State<ErrorConnection> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body:Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Lottie.asset('assets/animation_lk9jgyk8.json', height: 200, width: 200),
-              const Text('Нет подключения к интернету...'),
-            ],
-          )
-        ],
-      ),
-    );
+    return Container(
+        color: Colors.transparent,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Lottie.asset('assets/animation_lk9jgyk8.json', height: 200, width: 200, ),
+                const Text('Нет подключения к интернету...'),
+              ],
+            )
+          ],
+        ),
+      );
+ 
   }
 }
 

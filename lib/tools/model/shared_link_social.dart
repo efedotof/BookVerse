@@ -1,8 +1,19 @@
-
+/********************************************/
+/*                                          */
+/*        📱 Название приложения: BookVerse      */
+/*        📚 Описание: Это интуитивное мобильное приложение для чтения и публикации книг. Откройте мир литературы прямо с вашего устройства, где бы вы ни находились. С легкостью загружайте и читайте свои любимые книги из памяти устройства в различных форматах.    */
+/*        👤 Автор: efedotov                       */
+/*        📅 Дата: 2023-07-29                 */
+/*        🚀 Версия: 0.0                         */
+/*                                          */
+/*        © Все права защищены.                */
+/*                                          */
+/// *****************************************
 import 'package:flutter/material.dart';
 import 'package:magazine/tools/reader.dart';
 import 'package:social_media_buttons/social_media_buttons.dart';
 
+// ignore: camel_case_types
 class Shared_link extends StatefulWidget {
   const Shared_link({super.key,
     required this.mode,
@@ -12,6 +23,7 @@ class Shared_link extends StatefulWidget {
   State<Shared_link> createState() => _Shared_linkState();
 }
 
+// ignore: camel_case_types
 class _Shared_linkState extends State<Shared_link> {
   @override
   Widget build(BuildContext context) {

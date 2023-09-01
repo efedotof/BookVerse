@@ -1,3 +1,6 @@
+
+// ignore_for_file: file_names
+
 /********************************************/
 /*                                          */
 /*        📱 Название приложения: BookVerse      */
@@ -8,15 +11,17 @@
 /*                                          */
 /*        © Все права защищены.                */
 /*                                          */
-/********************************************/
+/// *****************************************
 import 'package:flutter/material.dart';
 
 class Textheader extends StatefulWidget {
   const Textheader({super.key,
     required this.text,
+    required this.modes,
   
   });
     final String text;
+    final bool modes;
   @override
   State<Textheader> createState() => _TextheaderState();
 }
@@ -24,6 +29,6 @@ class Textheader extends StatefulWidget {
 class _TextheaderState extends State<Textheader> {
   @override
   Widget build(BuildContext context) {
-    return Text(widget.text, style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w700),);
+    return Text(widget.text, style:  TextStyle(color:widget.modes?Colors.white: Colors.black, fontSize: 18, fontWeight: FontWeight.w700),);
   }
 }
