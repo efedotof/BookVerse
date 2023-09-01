@@ -13,13 +13,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:magazine/screens/auth/login.dart';
-import 'package:magazine/screens/auth/until/addition%20unit/Auth.dart';
-import 'package:magazine/screens/auth/until/profileViews.dart';
+import 'package:magazine/Auth/auth/login.dart';
 import 'package:magazine/tools/message.dart';
+import 'package:magazine/widgets/until/AuthUntil/Auth.dart';
 import 'package:magazine/widgets/until/LottieWidget.dart';
 import 'package:magazine/widgets/until/TextField.dart';
-import 'until/avatar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class Registration extends StatefulWidget {
   const Registration({super.key});
@@ -37,48 +37,62 @@ class _RegistrationState extends State<Registration> {
   final repeatpasswordController = TextEditingController();
 
   void usingin() {
-  if (usernameController.text.isNotEmpty &&
-      nickname.text.isNotEmpty &&
-      passwordController.text.isNotEmpty &&
-      repeatpasswordController.text.isNotEmpty &&
-      email.text.isNotEmpty) {
-    if (passwordController.text.length < 10 || containsForbiddenCharacters(passwordController.text)) {
-      Message.show(context,
-          message: "Пароль должен содержать не менее 10 символов и не содержать запрещенные символы",
-          duration: const Duration(seconds: 3));
-    } else if (passwordController.text != repeatpasswordController.text) {
-      Message.show(context,
-          message: "Пароли не совпадают",
-          duration: const Duration(seconds: 3));
-    } else if (!isValidEmail(email.text)) {
-      Message.show(context,
-          message: "Неправильный формат почты",
-          duration: const Duration(seconds: 3));
+    if (usernameController.text.isNotEmpty &&
+        nickname.text.isNotEmpty &&
+        passwordController.text.isNotEmpty &&
+        repeatpasswordController.text.isNotEmpty &&
+        email.text.isNotEmpty) {
+      if (passwordController.text.length < 10 ||
+          containsForbiddenCharacters(passwordController.text)) {
+        Message.show(context,
+            message:
+                "Пароль должен содержать не менее 10 символов и не содержать запрещенные символы",
+            duration: const Duration(seconds: 3));
+      } else if (passwordController.text != repeatpasswordController.text) {
+        Message.show(context,
+            message: "Пароли не совпадают",
+            duration: const Duration(seconds: 3));
+      } else if (!isValidEmail(email.text)) {
+        Message.show(context,
+            message: "Неправильный формат почты",
+            duration: const Duration(seconds: 3));
+      } else {
+        Auth().registration(context, email.text, passwordController.text,
+        
+
+            usernameController.text, nickname.text);
+      }
     } else {
-      Auth().registration(context, email.text, passwordController.text,
-          usernameController.text, nickname.text);
+      Message.show(context,
+          message: "Не все данные заполнены",
+          duration: const Duration(seconds: 3));
     }
-  } else {
-    Message.show(context,
-        message: "Не все данные заполнены",
-        duration: const Duration(seconds: 3));
   }
-}
 
-bool containsForbiddenCharacters(String text) {
-  // Здесь определите, какие символы считаются запрещенными.
-  // Например, запретим символы: !@#\$%^&*()[]{}<>?":;
-  // Вы можете дополнить этот список или изменить его по своему усмотрению.
-  final forbiddenCharacters = RegExp(r'[!@#\$%^&*()\[\]{}<>?":;]');
-  return forbiddenCharacters.hasMatch(text);
-}
+  bool containsForbiddenCharacters(String text) {
+    final forbiddenCharacters = RegExp(r'[!@#\$%^&*()\[\]{}<>?":;]');
+    return forbiddenCharacters.hasMatch(text);
+  }
 
-bool isValidEmail(String email) {
-  // Проверка на правильный формат электронной почты с использованием регулярного выражения.
-  final emailRegex = RegExp(r'^[\w-]+(\.[\w-]+)*@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,7}$');
-  return emailRegex.hasMatch(email);
-}
+  bool isValidEmail(String email) {
+    // Проверка на правильный формат электронной почты с использованием регулярного выражения.
+    final emailRegex =
+        RegExp(r'^[\w-]+(\.[\w-]+)*@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,7}$');
+    return emailRegex.hasMatch(email);
+  }
 
+  Future setPrefs() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('email', email.text);
+    prefs.setString('passwords', passwordController.text);
+  }
+
+
+  Future clear_prefs()async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.clear();
+    print('Данные успешно удалены');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -151,6 +165,9 @@ bool isValidEmail(String email) {
                         ),
                         child: OutlinedButton(
                           onPressed: () {
+                            clear_prefs();
+                            setPrefs();
+
                             usingin();
                           },
                           style: OutlinedButton.styleFrom(
