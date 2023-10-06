@@ -1,4 +1,4 @@
-name: magazine
+name: readerabooks
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.5 <4.0.0'
+  sdk: '>=3.1.0 <4.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -35,26 +35,14 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  sweet_nav_bar: ^1.0.5
-  searchfield: ^0.8.3
-  auto_size_text: ^3.0.0
-  fb2_parse: ^1.0.1
-  file_picker: ^5.3.2
-  path_provider: ^2.0.15
-  archive: ^3.3.7
-  http: ^1.1.0
-  salomon_bottom_bar: ^3.3.2
-  sticky_headers: ^0.3.0+2
-  shared_preferences: ^2.2.0
-  animations: ^2.0.7
-  intl: ^0.18.1
-  screen_brightness: ^0.2.2
-  share_plus: ^7.0.2
-  flutter_screenutil: ^5.8.4
-  social_media_buttons: ^1.0.0
-  searchbar_animation: ^0.0.4
-  anim_search_bar: ^2.0.3
-  
+  lottie: ^2.6.0
+  icons_launcher: ^2.1.4
+  flutter_svg: ^2.0.7
+  shared_preferences: ^2.2.1
+  carousel_slider: ^4.2.1
+  pretty_qr_code: ^3.0.0
+  qr_code_dart_scan: ^0.7.2
+  flutter_localization: ^0.1.14
 
 dev_dependencies:
   flutter_test:
@@ -80,7 +68,10 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/image_templets_books.jpg
+    - assets/lottie/loaded.json
+    - assets/three_books.svg
+    - assets/bag_zjvzelxborhv.svg
+    - assets/communication.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
